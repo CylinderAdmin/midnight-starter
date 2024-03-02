@@ -1,0 +1,26 @@
+#!/bin/bash
+
+# METHODS
+build_docker_compose () {
+  docker-compose build "${@:1}"
+}
+build_contract () {
+  docker-compose exec midnight-tutorials bash -c "cd contracts/${@:1} && yarn build"
+}
+
+# MENU
+case "$1" in
+  say_hello)
+    say_hello
+    ;;
+  *)
+    cat << EOF
+Command line interface for dockerized Midnight Tutorials app.
+Usage:
+  midnight <command> [options] [arguments]
+Available commands:
+  say_hello ........................ Say hello to the world
+EOF
+    exit 1
+    ;;
+esac

@@ -1,0 +1,70 @@
+version: '3.9'
+
+services:
+  midnight-tutorials:
+    build: .
+    container_name: midnight-tutorials
+    restart: unless-stopped
+    ports:
+      - "3333:3333"
+    volumes:
+      - ./:/app/midnight
+      - /app/midnight/node_modules
+    networks:
+      - midnight-network
+    # command: ["yarn", "dev", "--host", "0.0.0.0", "--port", "3333"]
+
+  midnight-proof-server:
+    image: "midnightnetwork/proof-server:latest"
+    command: ["midnight-proof-server --network devnet"]
+    container_name: midnight-proof-server
+    restart: unless-stopped
+    ports:
+      - 6300:6300
+    environment:
+      RUST_BACKTRACE: "full"
+    networks:
+      - midnight-network
+
+  # midnight-indexer:
+  #   image: "midnightnetwork/midnight-pubsub-indexer:latest"
+  #   container_name: midnight-indexer
+  #   ports:
+  #     - "8088:8088"
+  #   command: ["midnight-pubsub-indexer", "-Devents-source.node-host=node"]
+  #   healthcheck:
+  #     test: [ "CMD", "curl", "-f", "http://localhost:8088/health" ]
+  #     interval: 3s
+  #     timeout: 5s
+  #     retries: 5
+  #     start_period: 30s
+  #   depends_on:
+  #     midnight-node:
+  #       condition: service_healthy
+  #   environment:
+  #     LEDGER_NETWORK_ID: "DevNet"
+  #   networks:
+  #     - midnight-network
+
+  # midnight-node:
+  #   image: "midnightnetwork/midnight-node:latest"
+  #   container_name: midnight-node
+  #   ports:
+  #     - "9944:9944"
+  #     - "9933:9933"
+  #   healthcheck:
+  #     test: [ "CMD", "curl", "-f", "http://localhost:9933/health" ]
+  #     interval: 2s
+  #     timeout: 5s
+  #     retries: 5
+  #     start_period: 10s
+  #   environment:
+  #     - SEED_IP=nlb-node-peer-1.devnet-midnight.network
+  #     - SEED_ID=12D3KooWP9N6rCYQDnZgxoUXcyUykDxTLGrHUcoUrQM2JVTNVjP1
+  #     - SEED_PHRASE=secret-key-phrase-that-you-can-change-as-you-wish
+  #   networks:
+  #     - midnight-network
+
+networks:
+  midnight-network:
+    driver: bridge

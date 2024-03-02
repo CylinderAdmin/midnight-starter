@@ -1,0 +1,12 @@
+.turbo
+.vscode
+.yarn
+node_modules
+.git
+*.log
+*.log.*
+dist
+coverage
+.pnp.*
+
+contracts/**/managed/*

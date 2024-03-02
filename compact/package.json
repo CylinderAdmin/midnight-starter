@@ -1,0 +1,17 @@
+{
+  "name": "@midnight-tutorials/compact",
+  "description": "Compact fetcher",
+  "author": "Cylinder Software",
+  "license": "Apache-2.0",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "bin": {
+    "run-compactc": "src/run-compactc.cjs"
+  },
+  "devDependencies": {
+    "eslint": "^8.52.0",
+    "ts-node": "^10.9.1",
+    "typescript": "^5.2.2"
+  }
+}
