@@ -1,5 +1,5 @@
 {
-  "name": "@midnight-tutorials/hello-world-contract",
+  "name": "@midnight-starter/hello-world-contract",
   "version": "1.0.0",
   "type": "module",
   "main": "dist/index.js",
@@ -22,7 +22,7 @@
     "typecheck": "tsc -p tsconfig.json --noEmit"
   },
   "devDependencies": {
-    "@midnight-tutorials/compact": "workspace:*",
+    "@midnight-starter/compact": "workspace:*",
     "eslint": "^8.52.0",
     "jest": "^29.7.0",
     "typescript": "^5.2.2"

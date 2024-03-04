@@ -60,22 +60,11 @@ RUN compactc --version
 # SET THE WORKING DIRECTORY
 WORKDIR ${PROJECT_DIRECTORY}
 
-# COPY THE package.json FILE
-COPY package.json ./
-# COPY THE yarn.lock FILE
-COPY yarn.lock ./
-
-# COPY THE COMPACT PACKAGE.JSON FILE
-COPY compact/package.json ./compact/package.json
-
-# COPY THE FRONTEND PACKAGE.JSON FILE
-COPY frontend/package.json ./frontend/package.json
-
-# INSTALL THE DEPENDENCIES
-RUN yarn install
-
 # COPY THE REST OF THE FILES
 COPY . .
+
+# INSTALL THE DEPENDENCIES
+RUN yarn install && yarn build
 
 # MAKE THE USER THE OWNER OF THE WORKING DIRECTORY
 # RUN chown -R ${USERNAME}:${GROUPNAME} ${WORKING_DIRECTORY}/frontend

@@ -1,5 +1,6 @@
 .turbo
-.vscode
+.vscode/*
+!.vscode/extensions.json
 .yarn
 node_modules
 .pnp.*

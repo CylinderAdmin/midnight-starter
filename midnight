@@ -5,7 +5,7 @@ build_docker_compose () {
   docker-compose build "${@:1}"
 }
 build_contract () {
-  docker-compose exec midnight-tutorials bash -c "cd contracts/${@:1} && yarn build"
+  docker-compose exec midnight-starter bash -c "cd contracts/${@:1} && yarn build"
 }
 
 # MENU

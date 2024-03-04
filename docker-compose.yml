@@ -1,9 +1,9 @@
 version: '3.9'
 
 services:
-  midnight-tutorials:
+  midnight-starter:
     build: .
-    container_name: midnight-tutorials
+    container_name: midnight-starter
     restart: unless-stopped
     ports:
       - "3333:3333"
